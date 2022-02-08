@@ -1,12 +1,12 @@
 import React from 'react';
-import {CustomHeader} from '../components/header';
+import { CustomHeader } from '../components/header';
 import SubjectList from '../components/SubjectList';
 
-function SubjectListScreen() {
+function SubjectListScreen({ route, navigation }) {
   return (
     <>
       <CustomHeader title="Subject" />
-      <SubjectList />
+      <SubjectList route={route} navigation={navigation} />
     </>
   );
 }

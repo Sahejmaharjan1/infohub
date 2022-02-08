@@ -19,7 +19,7 @@
 // export { firebase };
 // Import the functions you need from the SDKs you need
 // import * as firebase from "firebase";
-import firebase from '@firebase/app'
+import firebase from '@firebase/app';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,24 +34,25 @@ import firebase from '@firebase/app'
 //   appId: "1:105428798939:web:49a9375f32ea94d4dfebfe"
 // };
 const firebaseConfig = {
-    apiKey: "AIzaSyAr79E3kRlzawYUGJYDCAim5T2uAQpxRvY",
-    authDomain: "finalprojectfirebase-f9a19.firebaseapp.com",
-    projectId: "finalprojectfirebase-f9a19",
-    storageBucket: "finalprojectfirebase-f9a19.appspot.com",
-    messagingSenderId: "806255981836",
-    appId: "1:806255981836:web:328e84cd7a1cef038b0529",
-    measurementId: "G-7DSRNCCZWW"
-  };
-  
+  apiKey: 'AIzaSyDGJw0BBQLFbQxafpa3bwXdK1s_tiVdB_I',
+  authDomain: 'finalyearproject-6ce95.firebaseapp.com',
+  databaseURL:
+    'https://finalyearproject-6ce95-default-rtdb.asia-southeast1.firebasedatabase.app',
+  projectId: 'finalyearproject-6ce95',
+  storageBucket: 'finalyearproject-6ce95.appspot.com',
+  messagingSenderId: '704543482933',
+  appId: '1:704543482933:web:0020b716eed6188ac87d7c',
+  measurementId: 'G-S5LPEJX5M2',
+};
 
 // Initialize Firebase
 let app;
 if (firebase.apps.length === 0) {
   app = firebase.initializeApp(firebaseConfig);
 } else {
-  app = firebase.app()
+  app = firebase.app();
 }
 
-const auth = firebase.auth()
+const auth = firebase.auth();
 
-export { auth };
+export { app, auth, firebaseConfig };

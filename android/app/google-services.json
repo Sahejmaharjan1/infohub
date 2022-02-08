@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "704543482933",
+    "firebase_url": "https://finalyearproject-6ce95-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "finalyearproject-6ce95",
     "storage_bucket": "finalyearproject-6ce95.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "704543482933-f6kk19jjs131fid6pj6fpu3loehdbvmp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.awesomeprojectkushal",
+            "certificate_hash": "d92d5c2cc7d63d6cc6d4ca67c93586d9dcdbf0a2"
+          }
+        },
         {
           "client_id": "704543482933-5job74b6elkk39l4co3iu26kjsc52k1h.apps.googleusercontent.com",
           "client_type": 3
