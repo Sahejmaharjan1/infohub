@@ -15,13 +15,13 @@ function ResearchPaperScreen({ route, navigation }) {
       .ref(`/items/${route.params.subject}/${route.params.name}`)
       .once('value')
       .then(snapshot => {
-        console.log('research data: ', snapshot.val());
-        console.log('research', Object.keys(snapshot.val()));
-        console.log('main', Object.keys(snapshot.val())[0]);
-        console.log(
-          'naim ',
-          snapshot.val()[Object.keys(snapshot.val())[0].toString()].url,
-        );
+        // console.log('research data: ', snapshot.val());
+        // console.log('research', Object.keys(snapshot.val()));
+        // console.log('main', Object.keys(snapshot.val())[0]);
+        // console.log(
+        //   'naim ',
+        //   snapshot.val()[Object.keys(snapshot.val())[0].toString()].url,
+        // );
         // setSubjectData(snapshot.val().Object.keys(snapshot.val())[0]);
         setResearchData(
           snapshot.val()[Object.keys(snapshot.val())[0].toString()].url,

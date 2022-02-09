@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { CustomButton } from './button';
 import firebase from '@react-native-firebase/app';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // const SubjectData = [
 //   {
@@ -32,11 +33,9 @@ import firebase from '@react-native-firebase/app';
 // ];
 
 function SubjectList({ route, navigation }) {
-  console.log('props', route, navigation);
-
   const [SubjectData, setSubjectData] = useState([]);
 
-  useEffect(() => {
+  const getList = async () => {
     firebase
       .app()
       .database(
@@ -44,15 +43,46 @@ function SubjectList({ route, navigation }) {
       )
       .ref(`/items/${route.params.name}`)
       .once('value')
-      .then(snapshot => {
-        console.log('User data: ', snapshot.val());
-        console.log('bolec', Object.keys(snapshot.val())[0]);
+      .then(async snapshot => {
+        // console.log('User data: ', snapshot.val());
+        // console.log('bolec', Object.keys(snapshot.val())[0]);
+        // setSubjectData(Object.keys(snapshot.val()));
+        const value = await AsyncStorage.getItem(`subject${route.params.name}`);
+        if (value !== null) {
+          console.log('value', value);
+          //filter the college data with respect to async storage college name
+          const storedCollege = value.split(',');
+          const counts = {};
+          storedCollege.forEach(function (x) {
+            counts[x] = (counts[x] || 0) + 1;
+          });
+          // counts= {'DWIT':1,"KEC":2}
+          // ['DWIT',"KEC"]
+          const testing = Object.keys(snapshot.val()).sort(function (a, b) {
+            console.log('testing items', a, b);
+            console.log('counts[a]', counts[a], counts[b]);
+            return (counts[a] || 0) > (counts[b] || 0);
+          });
+          console.log('testing', testing);
+          setSubjectData(testing.reverse());
+          return;
+        }
         setSubjectData(Object.keys(snapshot.val()));
       });
+  };
+  useEffect(() => {
+    getList();
   }, []);
   // const navigation = useNavigation();
-  const SubjectCardHandler = item => {
-    console.log('pressed', item);
+  const SubjectCardHandler = async item => {
+    const value = await AsyncStorage.getItem(`subject${route.params.name}`);
+    if (value !== null) {
+      //store the item in async storage
+      const newValue = `${value},${item}`;
+      await AsyncStorage.setItem(`subject${route.params.name}`, newValue);
+    } else {
+      await AsyncStorage.setItem(`subject${route.params.name}`, item);
+    }
     navigation.navigate('ResearchPaper', {
       subject: route.params.name,
       name: item,
